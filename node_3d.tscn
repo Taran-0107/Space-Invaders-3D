@@ -1,0 +1,181 @@
+[gd_scene load_steps=28 format=3 uid="uid://bfkw6bgbc5nx5"]
+
+[ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
+[ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
+[ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="2_lxmop"]
+[ext_resource type="Texture2D" uid="uid://sheh3nyrqhrx" path="res://wp.jpg" id="2_tpsft"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="4_k2wgd"]
+[ext_resource type="Texture2D" uid="uid://loo1m1ihdkbj" path="res://crosshair.png" id="6_8500j"]
+[ext_resource type="PackedScene" uid="uid://dnwc7ffkqcxj8" path="res://Ultimate Spaceships - May 2021/Imperial/glTF/Imperial.gltf" id="6_h3kvf"]
+[ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
+[ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vxnn6"]
+panorama = ExtResource("2_tpsft")
+
+[sub_resource type="Sky" id="Sky_egmhd"]
+sky_material = SubResource("PanoramaSkyMaterial_vxnn6")
+
+[sub_resource type="Environment" id="Environment_r5ji5"]
+background_mode = 1
+background_color = Color(0.113725, 0.0705882, 0.192157, 1)
+background_energy_multiplier = 1.9
+sky = SubResource("Sky_egmhd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkubj"]
+albedo_texture = ExtResource("1_gq4il")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1b5mm"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x28cm"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2tci"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.541066, 0.948978, 1, 1)
+emission_energy_multiplier = 1.72
+emission_on_uv2 = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgheb"]
+
+[sub_resource type="Curve" id="Curve_fhea7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0942029, 0.923077), 0.0, 0.0, 0, 0, Vector2(0.572464, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.985507, 0.10989), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_eidae"]
+curve = SubResource("Curve_fhea7")
+
+[sub_resource type="Curve" id="Curve_ro0jn"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.120879), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hxe50"]
+curve = SubResource("Curve_ro0jn")
+
+[sub_resource type="Curve" id="Curve_lnl0l"]
+max_value = 3.0
+_data = [Vector2(0.144928, 1.78022), 0.0, 4.84777, 0, 0, Vector2(0.608696, 2.04396), 0.0, 0.0, 0, 0, Vector2(0.789855, 1.45055), 0.0, 0.0, 0, 0, Vector2(1, 0.461539), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_x4wt5"]
+curve = SubResource("Curve_lnl0l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_asfc8"]
+lifetime_randomness = 0.03
+emission_shape = 2
+emission_sphere_radius = 0.3
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 1.626
+flatness = 0.08
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+attractor_interaction_enabled = false
+scale_min = 0.1
+scale_max = 0.5
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_x4wt5")
+color = Color(0.453514, 0.488809, 0.464663, 0.254902)
+alpha_curve = SubResource("CurveTexture_eidae")
+hue_variation_min = -0.35
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_hxe50")
+anim_speed_min = -2.9
+anim_speed_max = 5.2
+turbulence_noise_strength = 12.24
+turbulence_noise_scale = 5.145
+
+[sub_resource type="SphereMesh" id="SphereMesh_nktii"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_88e5a"]
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Skin" id="Skin_tdgls"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00818086, 0, 0.0108228)
+script = ExtResource("1_t7crw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r5ji5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0160481, 0, -0.202498)
+material_override = SubResource("StandardMaterial3D_rkubj")
+mesh = SubResource("PlaneMesh_1b5mm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x28cm")
+
+[node name="exie" parent="." instance=ExtResource("2_lxmop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40956, 0, 6.93489)
+
+[node name="Node3D" type="Node3D" parent="exie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35675, 5.1943)
+
+[node name="Camera3D" type="Camera3D" parent="exie/Node3D"]
+transform = Transform3D(0.999945, -0.0104718, -8.80561e-09, 0.00965555, 0.922002, 0.387065, -0.00405326, -0.387044, 0.922052, -0.278656, 2.31328, 4.5473)
+fov = 88.1829
+script = ExtResource("4_k2wgd")
+
+[node name="Sprite3D" type="Sprite3D" parent="exie/Node3D/Camera3D"]
+transform = Transform3D(1, 4.19095e-09, -4.65661e-10, -1.5134e-09, 1, 1.78814e-07, -4.65661e-10, -5.96046e-08, 0.999999, 0, 0, -1)
+flip_h = true
+pixel_size = 0.001
+texture = ExtResource("6_8500j")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="exie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.711801, -0.153299, 2.9315)
+sorting_use_aabb_center = false
+material_override = SubResource("StandardMaterial3D_v2tci")
+material_overlay = SubResource("StandardMaterial3D_tgheb")
+transparency = 0.42
+cast_shadow = 0
+amount = 100
+lifetime = 0.1
+preprocess = 0.31
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_asfc8")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_nktii")
+draw_pass_2 = SubResource("SphereMesh_88e5a")
+draw_skin = SubResource("Skin_tdgls")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="exie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15506, -0.153299, 2.9315)
+sorting_use_aabb_center = false
+material_override = SubResource("StandardMaterial3D_v2tci")
+material_overlay = SubResource("StandardMaterial3D_tgheb")
+transparency = 0.42
+cast_shadow = 0
+amount = 100
+lifetime = 0.1
+preprocess = 0.31
+trail_lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_asfc8")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_nktii")
+draw_pass_2 = SubResource("SphereMesh_88e5a")
+draw_skin = SubResource("Skin_tdgls")
+
+[node name="Imperial2" parent="." instance=ExtResource("6_h3kvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5986, -4.7525, -24.5415)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cvnra")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("8_g6dpo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -171.079, 0, -233.178)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://wiafoa3t5hot"]
+
+[ext_resource type="PackedScene" uid="uid://cken5841b6d2x" path="res://asteriods/scene.gltf" id="1_utp8h"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_utp8h")]
+
+[node name="RootNode" parent="Sketchfab_model/asteroids_fbx" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.77612e-15, 21.5097)
+
+[node name="Sphere_005" parent="Sketchfab_model/asteroids_fbx/RootNode" index="0"]
+transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 48.4629, 3.05176e-05)

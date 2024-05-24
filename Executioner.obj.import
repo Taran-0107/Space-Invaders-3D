@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://drl5udd4kofvw"
+path="res://.godot/imported/Executioner.obj-04a9cfbc8b2d7b8a903a4a5197ed50b3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Executioner.obj-04a9cfbc8b2d7b8a903a4a5197ed50b3.mesh"]
+
+source_file="res://Executioner.obj"
+dest_files=["res://.godot/imported/Executioner.obj-04a9cfbc8b2d7b8a903a4a5197ed50b3.mesh", "res://.godot/imported/Executioner.obj-04a9cfbc8b2d7b8a903a4a5197ed50b3.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

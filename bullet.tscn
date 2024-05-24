@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cppap520jr1n2"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_evqrm"]
+[ext_resource type="Material" uid="uid://d7cespglx51r" path="res://glowymat.tres" id="2_1fmeh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wyyrb"]
+size = Vector3(0.5, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r7lol"]
+size = Vector3(0.5, 0.5, 4)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_evqrm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999209, 0.0397656, 0, -0.0397656, 0.999209, 0, 0, 0, 1, -1.30531, 0, 0)
+mesh = SubResource("BoxMesh_wyyrb")
+surface_material_override/0 = ExtResource("2_1fmeh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608102, 0, 0)
+mesh = SubResource("BoxMesh_r7lol")
+surface_material_override/0 = ExtResource("2_1fmeh")
