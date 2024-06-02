@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=31 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="2_lxmop"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="4_k2wgd"]
 [ext_resource type="Texture2D" uid="uid://loo1m1ihdkbj" path="res://crosshair.png" id="6_8500j"]
-[ext_resource type="Script" path="res://GPUParticles3D3.gd" id="7_b0lx5"]
 [ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
-[ext_resource type="Shader" path="res://particles.gdshader" id="7_eioai"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
@@ -38,18 +36,13 @@ size = Vector2(10, 10)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x28cm"]
 data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
 
-[sub_resource type="Gradient" id="Gradient_wec4h"]
-offsets = PackedFloat32Array(0.385246, 1)
-colors = PackedColorArray(0.208601, 0.870434, 1, 1, 0.976471, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qjjo2"]
-gradient = SubResource("Gradient_wec4h")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2n0y6"]
-render_priority = 0
-shader = ExtResource("7_eioai")
-shader_parameter/particle_lifetime = 1.0
-shader_parameter/color_ramp = SubResource("GradientTexture1D_qjjo2")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2tci"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.541066, 0.948978, 1, 1)
+emission_energy_multiplier = 1.72
+emission_on_uv2 = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgheb"]
 
@@ -57,7 +50,7 @@ shader_parameter/color_ramp = SubResource("GradientTexture1D_qjjo2")
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0942029, 0.923077), 0.0, 0.0, 0, 0, Vector2(0.572464, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.985507, 0.10989), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_pwsgc"]
+[sub_resource type="CurveTexture" id="CurveTexture_woyov"]
 curve = SubResource("Curve_fhea7")
 
 [sub_resource type="Curve" id="Curve_ro0jn"]
@@ -65,7 +58,7 @@ min_value = -1.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.120879), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_6nhkj"]
+[sub_resource type="CurveTexture" id="CurveTexture_d2xbj"]
 curve = SubResource("Curve_ro0jn")
 
 [sub_resource type="Curve" id="Curve_lnl0l"]
@@ -73,7 +66,7 @@ max_value = 3.0
 _data = [Vector2(0.144928, 1.78022), 0.0, 4.84777, 0, 0, Vector2(0.608696, 2.04396), 0.0, 0.0, 0, 0, Vector2(0.789855, 1.45055), 0.0, 0.0, 0, 0, Vector2(1, 0.461539), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_7kihw"]
+[sub_resource type="CurveTexture" id="CurveTexture_c2p0d"]
 curve = SubResource("Curve_lnl0l")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_asfc8"]
@@ -88,12 +81,12 @@ scale_min = 0.1
 scale_max = 0.4
 scale_over_velocity_min = 1.0
 scale_over_velocity_max = 1.0
-scale_over_velocity_curve = SubResource("CurveTexture_7kihw")
+scale_over_velocity_curve = SubResource("CurveTexture_c2p0d")
 color = Color(0.453514, 0.488809, 0.464663, 0.254902)
-alpha_curve = SubResource("CurveTexture_pwsgc")
+alpha_curve = SubResource("CurveTexture_woyov")
 hue_variation_min = -0.35
 hue_variation_max = 1.0
-hue_variation_curve = SubResource("CurveTexture_6nhkj")
+hue_variation_curve = SubResource("CurveTexture_d2xbj")
 anim_speed_min = -2.9
 anim_speed_max = 5.2
 turbulence_noise_strength = 12.24
@@ -106,14 +99,6 @@ radial_segments = 4
 rings = 1
 
 [sub_resource type="Skin" id="Skin_tdgls"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2tci"]
-transparency = 1
-albedo_color = Color(0, 0, 0, 1)
-emission_enabled = true
-emission = Color(0.541066, 0.948978, 1, 1)
-emission_energy_multiplier = 1.72
-emission_on_uv2 = true
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00818086, 0, 0.0108228)
@@ -165,49 +150,6 @@ shape = SubResource("ConcavePolygonShape3D_x28cm")
 
 [node name="exie" parent="." instance=ExtResource("2_lxmop")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40956, 0, 6.93489)
-
-[node name="Node3D" type="Node3D" parent="exie"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35675, 5.1943)
-
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="exie"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.711801, -0.153299, 2.97393)
-sorting_use_aabb_center = false
-material_override = SubResource("ShaderMaterial_2n0y6")
-material_overlay = SubResource("StandardMaterial3D_tgheb")
-transparency = 1.0
-cast_shadow = 0
-amount = 150
-lifetime = 0.1
-interpolate = false
-fract_delta = false
-local_coords = true
-trail_lifetime = 2.25
-process_material = SubResource("ParticleProcessMaterial_asfc8")
-draw_passes = 2
-draw_pass_1 = SubResource("SphereMesh_nktii")
-draw_pass_2 = SubResource("SphereMesh_88e5a")
-draw_skin = SubResource("Skin_tdgls")
-script = ExtResource("7_b0lx5")
-
-[node name="GPUParticles3D4" type="GPUParticles3D" parent="exie"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09999, -0.153299, 2.85066)
-sorting_use_aabb_center = false
-material_override = SubResource("ShaderMaterial_2n0y6")
-material_overlay = SubResource("StandardMaterial3D_tgheb")
-transparency = 1.0
-cast_shadow = 0
-amount = 150
-lifetime = 0.1
-interpolate = false
-fract_delta = false
-local_coords = true
-trail_lifetime = 2.25
-process_material = SubResource("ParticleProcessMaterial_asfc8")
-draw_passes = 2
-draw_pass_1 = SubResource("SphereMesh_nktii")
-draw_pass_2 = SubResource("SphereMesh_88e5a")
-draw_skin = SubResource("Skin_tdgls")
-script = ExtResource("7_b0lx5")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_cvnra")

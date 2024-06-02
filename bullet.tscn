@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cppap520jr1n2"]
+[gd_scene load_steps=7 format=3 uid="uid://cppap520jr1n2"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_evqrm"]
 [ext_resource type="Material" uid="uid://d7cespglx51r" path="res://glowymat.tres" id="2_1fmeh"]
@@ -8,6 +8,12 @@ size = Vector3(0.5, 0.5, 4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r7lol"]
 size = Vector3(0.5, 0.5, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1pmln"]
+points = PackedVector3Array(0.25, 0.25, 2, 0.25, -0.25, 2, 0.25, 0.25, -2, -0.25, 0.25, 2, -0.25, -0.25, 2, 0.25, -0.25, -2, -0.25, 0.25, -2, -0.25, -0.25, -2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_slnha"]
+points = PackedVector3Array(0.25, 0.25, 2, 0.25, -0.25, 2, 0.25, 0.25, -2, -0.25, 0.25, 2, -0.25, -0.25, 2, 0.25, -0.25, -2, -0.25, 0.25, -2, -0.25, -0.25, -2)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_evqrm")
@@ -21,3 +27,13 @@ surface_material_override/0 = ExtResource("2_1fmeh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608102, 0, 0)
 mesh = SubResource("BoxMesh_r7lol")
 surface_material_override/0 = ExtResource("2_1fmeh")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608102, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_1pmln")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.999209, 0.0397656, 0, -0.0397656, 0.999209, 0, 0, 0, 1, -1.30531, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_slnha")

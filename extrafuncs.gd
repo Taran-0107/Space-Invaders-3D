@@ -19,11 +19,9 @@ func _shoot(ship,bullet_scene,scenenode):
 	#print("Shot fired with velocity: ", new_bullet.velocity)
 	
 func player_shoot(player,scenenode):
-	print("player shot")
 	_shoot(player,player_bullet,scenenode)
 	
 func enemy_shoot(enemy,scenenode):
-	print("enemy shot")
 	_shoot(enemy,enemy_bullet,scenenode)
 	
 func _ready():
