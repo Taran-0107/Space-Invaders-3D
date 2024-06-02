@@ -13,6 +13,7 @@ var collider
 var looker
 var can_shoot=true
 var rotationSpeed = 2;
+var healthbar
 
 
 var health
@@ -25,7 +26,10 @@ func in_range(radius):
 	return distance(position,target.position)<radius
 
 func health_handler():
-	health-=1
+	health-=10
+	if health<=0:
+		queue_free()
+		
 	
 func _ready():
 	health=100
@@ -33,6 +37,7 @@ func _ready():
 	collider=$CollisionShape3D
 	target=$"../exie"
 	vizbox=$viznode/VisibleOnScreenNotifier3D
+	healthbar = $SubViewport/HealthBar
 
 
 	
@@ -47,6 +52,8 @@ func shoot(delta):
 
 
 func _physics_process(delta):
+	
+	healthbar.value = health
 	
 	
 	if can_shoot:
@@ -77,12 +84,15 @@ func _physics_process(delta):
 		#velocity=10*transform.basis.z*-1
 	#if(target.velocity.length()>1/2):
 		#velocity=7*transform.basis.z*-1
+
+	print(healthbar.value)
 	
 	move_and_slide()
 
 
-func take_damage(damage):
-	if $SubViewport/HealthBar.value < damage:
-		damage = $SubViewport/HealthBar.value
-	$SubViewport/HealthBar.value -= damage
+#func take_damage(damage):
+	#if healthbar.value < damage:
+		#damage = healthbar.value
+	#healthbar.value -= damage
+	
 	

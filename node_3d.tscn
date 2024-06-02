@@ -192,6 +192,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3797, 0, -8.33866)
 
 [node name="Bob2" parent="." instance=ExtResource("21_io3hh")]
 transform = Transform3D(-0.999979, 0, -0.00654489, 0, 1, 0, 0.00654489, 0, -0.999979, -5.29809, 2.45351, -15.8736)
+script = ExtResource("22_sgs1c")
 
 [node name="Timer" type="Timer" parent="."]
 

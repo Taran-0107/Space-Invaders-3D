@@ -23,6 +23,7 @@ func _process(delta):
 			for j in collision_areas:
 				if j.get_parent()==i:
 					i.health_handler()
+					#i.take_damage(10)
 					queue_free()
 		
 		
