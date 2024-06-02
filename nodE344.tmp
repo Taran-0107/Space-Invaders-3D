@@ -1,0 +1,280 @@
+[gd_scene load_steps=45 format=3 uid="uid://bfkw6bgbc5nx5"]
+
+[ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
+[ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
+[ext_resource type="Texture2D" uid="uid://q5dfefiq0bfi" path="res://panorama_image.png" id="2_bjgas"]
+[ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="2_lxmop"]
+[ext_resource type="Script" path="res://Camera3D.gd" id="4_k2wgd"]
+[ext_resource type="Texture2D" uid="uid://loo1m1ihdkbj" path="res://crosshair.png" id="6_8500j"]
+[ext_resource type="PackedScene" uid="uid://dnwc7ffkqcxj8" path="res://Ultimate Spaceships - May 2021/Imperial/glTF/Imperial.gltf" id="6_h3kvf"]
+[ext_resource type="Script" path="res://GPUParticles3D3.gd" id="7_b0lx5"]
+[ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
+[ext_resource type="Shader" path="res://particles.gdshader" id="7_eioai"]
+[ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
+[ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
+[ext_resource type="PackedScene" uid="uid://vvyn6r07b2tb" path="res://Ultimate Spaceships - May 2021/Bob/glTF/Bob.gltf" id="11_7g87a"]
+[ext_resource type="PackedScene" uid="uid://8tgtb3supidg" path="res://Ultimate Spaceships - May 2021/Challenger/glTF/Challenger.gltf" id="12_mdr8b"]
+[ext_resource type="PackedScene" uid="uid://brnqlqthqrjbx" path="res://Ultimate Spaceships - May 2021/Dispatcher/glTF/Dispatcher.gltf" id="13_sd1kq"]
+[ext_resource type="PackedScene" uid="uid://bq1fvunxn6yu6" path="res://Ultimate Spaceships - May 2021/Insurgent/glTF/Insurgent.gltf" id="14_54tdp"]
+[ext_resource type="PackedScene" uid="uid://dtup4egm8jxis" path="res://Ultimate Spaceships - May 2021/Omen/glTF/Omen.gltf" id="15_yjo72"]
+[ext_resource type="PackedScene" uid="uid://dw2ehy84kbo4l" path="res://Ultimate Spaceships - May 2021/Pancake/glTF/Pancake.gltf" id="16_wgul3"]
+[ext_resource type="PackedScene" uid="uid://crpjxpx04nnxa" path="res://Ultimate Spaceships - May 2021/Spitfire/glTF/Spitfire.gltf" id="17_230yt"]
+[ext_resource type="PackedScene" uid="uid://iqrtrty03212" path="res://Ultimate Spaceships - May 2021/Striker/glTF/Striker.gltf" id="18_do51d"]
+[ext_resource type="PackedScene" uid="uid://d1d4qhtp3vwln" path="res://Ultimate Spaceships - May 2021/Zenith/glTF/Zenith.gltf" id="19_khqyt"]
+[ext_resource type="PackedScene" uid="uid://d4lvnk2i5b4r2" path="res://bob_enemy1.tscn" id="21_io3hh"]
+[ext_resource type="Script" path="res://bob_enemy1.gd" id="22_sgs1c"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vxnn6"]
+panorama = ExtResource("2_bjgas")
+
+[sub_resource type="Sky" id="Sky_egmhd"]
+sky_material = SubResource("PanoramaSkyMaterial_vxnn6")
+
+[sub_resource type="Environment" id="Environment_r5ji5"]
+background_mode = 2
+background_color = Color(0.113725, 0.0705882, 0.192157, 1)
+background_energy_multiplier = 1.9
+sky = SubResource("Sky_egmhd")
+glow_enabled = true
+glow_blend_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rkubj"]
+albedo_texture = ExtResource("1_gq4il")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1b5mm"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x28cm"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="Gradient" id="Gradient_wec4h"]
+offsets = PackedFloat32Array(0.45082, 0.819672, 1)
+colors = PackedColorArray(0.208601, 0.870434, 1, 1, 0.763346, 0.973471, 0, 1, 0.978319, 0.948532, 7.70092e-07, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q2f8b"]
+gradient = SubResource("Gradient_wec4h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2n0y6"]
+render_priority = 0
+shader = ExtResource("7_eioai")
+shader_parameter/particle_lifetime = 1.0
+shader_parameter/color_ramp = SubResource("GradientTexture1D_q2f8b")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tgheb"]
+
+[sub_resource type="Curve" id="Curve_fhea7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0942029, 0.923077), 0.0, 0.0, 0, 0, Vector2(0.572464, 0.505494), 0.0, 0.0, 0, 0, Vector2(0.985507, 0.10989), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_eidae"]
+curve = SubResource("Curve_fhea7")
+
+[sub_resource type="Curve" id="Curve_ro0jn"]
+min_value = -1.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.120879), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hxe50"]
+curve = SubResource("Curve_ro0jn")
+
+[sub_resource type="Curve" id="Curve_lnl0l"]
+max_value = 3.0
+_data = [Vector2(0.144928, 1.78022), 0.0, 4.84777, 0, 0, Vector2(0.608696, 2.04396), 0.0, 0.0, 0, 0, Vector2(0.789855, 1.45055), 0.0, 0.0, 0, 0, Vector2(1, 0.461539), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_x4wt5"]
+curve = SubResource("Curve_lnl0l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_asfc8"]
+emission_shape = 2
+emission_sphere_radius = 0.3
+direction = Vector3(0, 0, 0)
+spread = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.4
+scale_over_velocity_min = 1.0
+scale_over_velocity_max = 1.0
+scale_over_velocity_curve = SubResource("CurveTexture_x4wt5")
+color = Color(0.453514, 0.488809, 0.464663, 0.254902)
+alpha_curve = SubResource("CurveTexture_eidae")
+hue_variation_min = -0.35
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_hxe50")
+anim_speed_min = -2.9
+anim_speed_max = 5.2
+turbulence_noise_strength = 12.24
+turbulence_noise_scale = 5.145
+
+[sub_resource type="SphereMesh" id="SphereMesh_nktii"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_88e5a"]
+radial_segments = 4
+rings = 1
+
+[sub_resource type="Skin" id="Skin_tdgls"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2tci"]
+transparency = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.541066, 0.948978, 1, 1)
+emission_energy_multiplier = 1.72
+emission_on_uv2 = true
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00818086, 0, 0.0108228)
+script = ExtResource("1_t7crw")
+
+[node name="twistpivot" type="Node3D" parent="."]
+transform = Transform3D(0.999945, -0.0104718, -8.88488e-09, 0.00965555, 0.922002, 0.387065, -0.00405326, -0.387044, 0.922052, 1.1309, 2.95902, 13.042)
+
+[node name="pitchpivot" type="Node3D" parent="twistpivot"]
+transform = Transform3D(1, 5.82077e-10, 4.65661e-10, -5.82077e-10, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="twistpivot/pitchpivot"]
+transform = Transform3D(1, 8.14907e-10, 2.32831e-10, 5.82077e-10, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+fov = 88.1829
+script = ExtResource("4_k2wgd")
+
+[node name="Sprite3D" type="Sprite3D" parent="twistpivot/pitchpivot/Camera3D"]
+transform = Transform3D(1, 4.19095e-09, -4.65661e-10, -1.5134e-09, 1, 1.78814e-07, -4.65661e-10, -5.96046e-08, 0.999999, 0, 0, -1)
+flip_h = true
+pixel_size = 0.001
+texture = ExtResource("6_8500j")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)
+light_energy = 10.011
+light_volumetric_fog_energy = 2.131
+light_size = 0.172
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r5ji5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.452435, -0.636075, -0.625069, 0, -0.700909, 0.71325, -0.891798, -0.322699, -0.317116, 0, -7.62939e-06, 0)
+light_volumetric_fog_energy = 0.97
+shadow_enabled = true
+sky_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0160481, 0, -0.202498)
+material_override = SubResource("StandardMaterial3D_rkubj")
+mesh = SubResource("PlaneMesh_1b5mm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x28cm")
+
+[node name="exie" parent="." instance=ExtResource("2_lxmop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40956, 0, 6.93489)
+
+[node name="Node3D" type="Node3D" parent="exie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35675, 5.1943)
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="exie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.711801, -0.153299, 2.97393)
+sorting_use_aabb_center = false
+material_override = SubResource("ShaderMaterial_2n0y6")
+material_overlay = SubResource("StandardMaterial3D_tgheb")
+transparency = 1.0
+cast_shadow = 0
+amount = 150
+lifetime = 0.1
+interpolate = false
+fract_delta = false
+local_coords = true
+trail_lifetime = 2.25
+process_material = SubResource("ParticleProcessMaterial_asfc8")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_nktii")
+draw_pass_2 = SubResource("SphereMesh_88e5a")
+draw_skin = SubResource("Skin_tdgls")
+script = ExtResource("7_b0lx5")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="exie"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09999, -0.153299, 2.85066)
+sorting_use_aabb_center = false
+material_override = SubResource("ShaderMaterial_2n0y6")
+material_overlay = SubResource("StandardMaterial3D_tgheb")
+transparency = 1.0
+cast_shadow = 0
+amount = 150
+lifetime = 0.1
+interpolate = false
+fract_delta = false
+local_coords = true
+trail_lifetime = 2.25
+process_material = SubResource("ParticleProcessMaterial_asfc8")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_nktii")
+draw_pass_2 = SubResource("SphereMesh_88e5a")
+draw_skin = SubResource("Skin_tdgls")
+script = ExtResource("7_b0lx5")
+
+[node name="Imperial2" parent="." instance=ExtResource("6_h3kvf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5986, -4.7525, -24.5415)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cvnra")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("8_g6dpo")]
+transform = Transform3D(0.323472, 0, -0.946238, 0, 1, 0, 0.946238, 0, 0.323472, -171.079, 0, -233.178)
+
+[node name="RigidBody3D" parent="." instance=ExtResource("10_8uadu")]
+transform = Transform3D(0.992086, 0, 0.125558, 0, 1, 0, -0.125558, 0, 0.992086, -1853.27, -634.7, -9.37447)
+
+[node name="Bob2" parent="." instance=ExtResource("11_7g87a")]
+transform = Transform3D(0.999754, 0.0221813, 0, -0.0221813, 0.999754, 0, 0, 0, 1, -7.33009, 6.31943, 15.0499)
+
+[node name="Challenger2" parent="." instance=ExtResource("12_mdr8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.8011, 6.11674, 7.47208)
+
+[node name="Dispatcher2" parent="." instance=ExtResource("13_sd1kq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.23979, 7.74274, 2.95292)
+
+[node name="Insurgent2" parent="." instance=ExtResource("14_54tdp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.92547, 8.05899, 11.278)
+
+[node name="Omen2" parent="." instance=ExtResource("15_yjo72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6589, 10.812, 3.87168)
+
+[node name="Pancake2" parent="." instance=ExtResource("16_wgul3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0152, 0, 2.92805)
+
+[node name="Spitfire2" parent="." instance=ExtResource("17_230yt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0783, 3.87494, -3.38817)
+
+[node name="Striker2" parent="." instance=ExtResource("18_do51d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.077, 0, 4.18714)
+
+[node name="Zenith2" parent="." instance=ExtResource("19_khqyt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.2822, 0, 3.36768)
+
+[node name="Bob" parent="." instance=ExtResource("21_io3hh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9846, 0, 15.1764)
+script = ExtResource("22_sgs1c")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4432, -0.153299, 2.83242)
+sorting_use_aabb_center = false
+material_override = SubResource("StandardMaterial3D_v2tci")
+material_overlay = SubResource("StandardMaterial3D_tgheb")
+transparency = 0.75
+cast_shadow = 0
+amount = 150
+lifetime = 0.1
+interpolate = false
+fract_delta = false
+local_coords = true
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_asfc8")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_nktii")
+draw_pass_2 = SubResource("SphereMesh_88e5a")
+draw_skin = SubResource("Skin_tdgls")

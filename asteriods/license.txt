@@ -1,0 +1,11 @@
+Model Information:
+* title:	Asteroids - Low Poly
+* source:	https://sketchfab.com/3d-models/asteroids-low-poly-791ccef91d3f46dd97997604fc7364a4
+* author:	Jacobs Development (https://sketchfab.com/Jacobs_Development)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Asteroids - Low Poly" (https://sketchfab.com/3d-models/asteroids-low-poly-791ccef91d3f46dd97997604fc7364a4) by Jacobs Development (https://sketchfab.com/Jacobs_Development) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

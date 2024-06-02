@@ -2,29 +2,68 @@ extends Camera3D
 
 var ship
 var offset
+var twistpivot
+var pitchpivot
 var pos_offset
+var twist_input=0
+var pitch_input=0
+
+var mouse_sensitivity=0.001
 
 @export var lerp_speed=0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pitchpivot=get_parent()
+	twistpivot=pitchpivot.get_parent()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	offset=rotation
 	
-	ship=$".."
+	ship=get_node("/root/Node3D/exie")
 	
 	
-	pos_offset=position
-	pass # Replace with function body.
+	pos_offset=(ship.position-twistpivot.position)*-1
+	pass # Replace with function body.a
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
+	
+	if(Input.is_action_pressed("ui_cancel")):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	if(Input.is_action_pressed("ui_accept")):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
 	
 	#position=ship.position+ship.transform.basis.z*5+ship.transform.basis.y*2
-	position=lerp(position,ship.position+ship.transform.basis.y*2.3*-1,20*delta)
-	rotation.x = lerp_angle(rotation.x,ship.rotation.x,delta)
-	rotation.y = lerp_angle(rotation.y,ship.rotation.y,delta)
-	rotation.z = lerp_angle(rotation.z,ship.rotation.z,delta)
+	twistpivot.position=lerp(twistpivot.position,(ship.position+ship.transform.basis.z*7+ship.transform.basis.y*5),0.1)
+	
+	twistpivot.position.x+=twist_input*500*delta
+	twistpivot.position.y+=pitch_input*500*delta
+	
+	twistpivot.rotate_y(twist_input*delta*100)
+	pitchpivot.rotate_x(pitch_input*delta*100)
+	
+	pitchpivot.rotation.x=clamp(pitchpivot.rotation.x,deg_to_rad(-45),deg_to_rad(45))
+	#twistpivot.rotation.y=clamp(twistpivot.rotation.y,deg_to_rad(0),deg_to_rad(360))
+	
+	ship.rotation.x=lerp(ship.rotation.x,pitchpivot.rotation.x,delta*5) 
+	ship.rotation.y=lerp_angle(ship.rotation.y,twistpivot.rotation.y,delta*5) 
 
-	look_at(ship.global_transform.origin, Vector3.UP)
+	twist_input=0
+	pitch_input=0
+	
+	
+	
+	
+
+	#look_at(ship.global_transform.origin+ship.global_transform.basis.y*4, Vector3.UP)
 	#rotation.z=0
+
+func _unhandled_input(event: InputEvent):
+	if event is InputEventMouseMotion:
+		if Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
+			twist_input=-event.relative.x*mouse_sensitivity
+			pitch_input=-event.relative.y*mouse_sensitivity
+			
+		

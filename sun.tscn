@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0sg57t3ci7je"]
+
+[ext_resource type="Texture2D" uid="uid://mj1jrpujsp1g" path="res://2k_sun.jpg" id="1_ayo6j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkmyw"]
+albedo_texture = ExtResource("1_ayo6j")
+emission_enabled = true
+emission_energy_multiplier = 2.93
+emission_texture = ExtResource("1_ayo6j")
+
+[sub_resource type="SphereMesh" id="SphereMesh_tsp66"]
+material = SubResource("StandardMaterial3D_jkmyw")
+radius = 1000.0
+height = 2000.0
+
+[node name="RigidBody3D" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1455.77, -31.7236, 169.175)
+mesh = SubResource("SphereMesh_tsp66")
