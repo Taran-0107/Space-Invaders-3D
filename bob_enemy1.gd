@@ -9,12 +9,9 @@ var waitforbullet=0
 var target
 var vizbox
 const safedistance=50
-var collider
-var looker
 var can_shoot=true
 var rotationSpeed = 2;
 var healthbar
-
 
 var health
 var velocity_mag=8
@@ -28,19 +25,19 @@ func in_range(radius):
 func health_handler():
 	health-=10
 	if health<=0:
+		set_visible(false)
+		shooter.explosion(position,get_parent())
 		queue_free()
+		
+		
 		
 	
 func _ready():
 	health=100
-	looker=$look
-	collider=$CollisionShape3D
 	target=$"../exie"
 	vizbox=$viznode/VisibleOnScreenNotifier3D
 	healthbar = $SubViewport/HealthBar
 
-
-	
 	
 func shoot(delta):
 	if waitforbullet>1:
@@ -85,7 +82,6 @@ func _physics_process(delta):
 	#if(target.velocity.length()>1/2):
 		#velocity=7*transform.basis.z*-1
 
-	print(healthbar.value)
 	
 	move_and_slide()
 

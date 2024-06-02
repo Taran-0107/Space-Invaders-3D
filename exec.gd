@@ -30,7 +30,7 @@ func append_nitros(val):
 			
 func _ready():
 	health=100
-	nitros=[get_node("/root/Node3D/exie/GPUParticles3D3"),get_node("/root/Node3D/exie/GPUParticles3D4")]
+	nitros=[$particlehandler/GPUParticles3D4,$particlehandler/GPUParticles3D3]
 	area=$Area3D
 	
 func get_input(delta):

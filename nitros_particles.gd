@@ -5,10 +5,11 @@ var ship
 
 func _ready():
 	# Set the new linear velocity
-	ship=get_parent()
+	ship=get_parent().get_parent()
 
 
 func _process(delta):
+	
 	process_material.initial_velocity_min=ship.velocity.length()*0.08
 	process_material.initial_velocity_max=ship.velocity.length()*0.1
 	

@@ -105,7 +105,29 @@ transform = Transform3D(-0.999936, 0, -0.0113093, 0, 1, 0, 0.0113093, 0, -0.9999
 transform = Transform3D(-0.999936, 0, -0.0113093, 0, 1, 0, 0.0113093, 0, -0.999936, 0.0224092, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_fcp5l")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="." index="3"]
+[node name="particlehandler" type="Node3D" parent="." index="3"]
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="particlehandler" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992925, -0.153299, 2.87143)
+sorting_use_aabb_center = false
+material_override = SubResource("ShaderMaterial_cx48g")
+material_overlay = SubResource("StandardMaterial3D_83hqx")
+transparency = 1.0
+cast_shadow = 0
+amount = 150
+lifetime = 0.1
+interpolate = false
+fract_delta = false
+local_coords = true
+trail_lifetime = 2.25
+process_material = SubResource("ParticleProcessMaterial_1kefj")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_non0f")
+draw_pass_2 = SubResource("SphereMesh_sox0m")
+draw_skin = SubResource("Skin_1rxv6")
+script = ExtResource("4_t1glm")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="particlehandler" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.867772, -0.153299, 2.91102)
 sorting_use_aabb_center = false
 material_override = SubResource("ShaderMaterial_cx48g")
@@ -117,26 +139,6 @@ lifetime = 0.1
 interpolate = false
 fract_delta = false
 visibility_aabb = AABB(-4.1543, -4, -4, 8, 8, 8)
-local_coords = true
-trail_lifetime = 2.25
-process_material = SubResource("ParticleProcessMaterial_1kefj")
-draw_passes = 2
-draw_pass_1 = SubResource("SphereMesh_non0f")
-draw_pass_2 = SubResource("SphereMesh_sox0m")
-draw_skin = SubResource("Skin_1rxv6")
-script = ExtResource("4_t1glm")
-
-[node name="GPUParticles3D4" type="GPUParticles3D" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.992925, -0.153299, 2.87143)
-sorting_use_aabb_center = false
-material_override = SubResource("ShaderMaterial_cx48g")
-material_overlay = SubResource("StandardMaterial3D_83hqx")
-transparency = 1.0
-cast_shadow = 0
-amount = 150
-lifetime = 0.1
-interpolate = false
-fract_delta = false
 local_coords = true
 trail_lifetime = 2.25
 process_material = SubResource("ParticleProcessMaterial_1kefj")
