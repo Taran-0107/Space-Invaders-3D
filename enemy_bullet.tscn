@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bed05pp152w4a"]
+[gd_scene load_steps=7 format=3 uid="uid://bed05pp152w4a"]
 
-[ext_resource type="Script" path="res://bullet.gd" id="1_v1f5r"]
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_bsskf"]
 [ext_resource type="Material" uid="uid://3y2bltyy7s71" path="res://enemybulletmat.tres" id="2_8q7ve"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wyyrb"]
@@ -9,8 +9,14 @@ size = Vector3(0.5, 0.5, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_r7lol"]
 size = Vector3(0.5, 0.5, 4)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dgkye"]
+points = PackedVector3Array(0.25, 0.25, 2, 0.25, -0.25, 2, 0.25, 0.25, -2, -0.25, 0.25, 2, -0.25, -0.25, 2, 0.25, -0.25, -2, -0.25, 0.25, -2, -0.25, -0.25, -2)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8dgdx"]
+points = PackedVector3Array(0.25, 0.25, 2, 0.25, -0.25, 2, 0.25, 0.25, -2, -0.25, 0.25, 2, -0.25, -0.25, 2, 0.25, -0.25, -2, -0.25, 0.25, -2, -0.25, -0.25, -2)
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
-script = ExtResource("1_v1f5r")
+script = ExtResource("1_bsskf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.999209, 0.0397656, 0, -0.0397656, 0.999209, 0, 0, 0, 1, -1.30531, 0, 0)
@@ -21,3 +27,13 @@ surface_material_override/0 = ExtResource("2_8q7ve")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608102, 0, 0)
 mesh = SubResource("BoxMesh_r7lol")
 surface_material_override/0 = ExtResource("2_8q7ve")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608102, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_dgkye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.999209, 0.0397656, 0, -0.0397656, 0.999209, 0, 0, 0, 1, -1.30531, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_8dgdx")

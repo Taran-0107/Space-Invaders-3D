@@ -22,12 +22,14 @@ var yaw_input = 0.0
 var forward_speed = 0.0
 var nitros
 var area
+var health
 
 func append_nitros(val):
 		for i in nitros:
 			i.emitting=val
 			
 func _ready():
+	health=100
 	nitros=[get_node("/root/Node3D/exie/GPUParticles3D3"),get_node("/root/Node3D/exie/GPUParticles3D4")]
 	area=$Area3D
 	
@@ -43,7 +45,8 @@ func get_input(delta):
 		forward_speed = lerp(forward_speed, 0.0, acceleration * delta)
 		
 	#print(roll_input)
-
+func health_handler():
+	health-=1
 func _physics_process(delta):
 	var x=get_parent().transform.basis.x
 	var y=get_parent().transform.basis.y
@@ -66,7 +69,8 @@ func _physics_process(delta):
 	
 	move_and_collide(velocity * delta)
 	
-	print(area.get_overlapping_bodies(),area.get_overlapping_areas())
+	
+	
 	
 
 

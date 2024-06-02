@@ -15,6 +15,7 @@ var can_shoot=true
 var rotationSpeed = 2;
 
 
+var health
 var velocity_mag=8
 
 func distance(a,b):
@@ -22,8 +23,12 @@ func distance(a,b):
 
 func in_range(radius):
 	return distance(position,target.position)<radius
+
+func health_handler():
+	health-=1
 	
 func _ready():
+	health=100
 	looker=$look
 	collider=$CollisionShape3D
 	target=$"../exie"

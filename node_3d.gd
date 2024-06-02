@@ -5,7 +5,7 @@ var enemy_bullet = preload("res://enemy_bullet.tscn")
 var star_scene=preload("res://star.tscn")
 var ship1
 
-var enemy
+var enemies=[]
 var bullets = []
 
 var waitforbullet=0;
@@ -14,7 +14,7 @@ func _ready():
 	
 	#$AudioStreamPlayer.play()
 	ship1 = $exie
-	enemy=$Bob
+	enemies=[$Bob,$Bob2,$Bob3]
 	
 	for i in range(100):
 		var star_scene=preload("res://star.tscn")
@@ -29,7 +29,7 @@ func _ready():
 	pass
 
 func _process(delta):
-	rotation = Vector3.ZERO
+	pass
 		
 	
 func add_stars(ammount):
