@@ -40,3 +40,7 @@ func add_stars(ammount):
 	star.position=Vector3(rand_x,rand_y,rand_z)
 	add_child(star)
 
+
+
+func _on_timer_timeout():
+	$Bob.take_damage(10)

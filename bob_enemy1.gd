@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+
+
+
 var shooter=preload("res://extrafuncs.gd").new()
 
 var waitforbullet=0
@@ -10,6 +13,7 @@ var collider
 var looker
 var can_shoot=true
 var rotationSpeed = 2;
+
 
 var velocity_mag=8
 
@@ -24,6 +28,9 @@ func _ready():
 	collider=$CollisionShape3D
 	target=$"../exie"
 	vizbox=$viznode/VisibleOnScreenNotifier3D
+
+
+	
 	
 func shoot(delta):
 	if waitforbullet>1:
@@ -67,3 +74,10 @@ func _physics_process(delta):
 		#velocity=7*transform.basis.z*-1
 	
 	move_and_slide()
+
+
+func take_damage(damage):
+	if $SubViewport/HealthBar.value < damage:
+		damage = $SubViewport/HealthBar.value
+	$SubViewport/HealthBar.value -= damage
+	
