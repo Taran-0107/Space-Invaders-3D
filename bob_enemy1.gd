@@ -1,8 +1,5 @@
 extends CharacterBody3D
 
-
-
-
 var shooter=preload("res://extrafuncs.gd").new()
 
 var waitforbullet=0
@@ -12,7 +9,7 @@ const safedistance=50
 var can_shoot=true
 var rotationSpeed = 2;
 var healthbar
-
+var maxhealth=100
 var health
 var velocity_mag=8
 
@@ -33,7 +30,7 @@ func health_handler():
 		
 	
 func _ready():
-	health=100
+	health=maxhealth
 	target=$"../exie"
 	vizbox=$viznode/VisibleOnScreenNotifier3D
 	healthbar = $SubViewport/HealthBar
@@ -55,25 +52,26 @@ func _physics_process(delta):
 	
 	if can_shoot:
 		shoot(delta)
-
-	if vizbox.is_on_screen():
-		var timetocatch=(distance(target.position,position))/target.velocity.length()
-		if timetocatch<1:
-			can_shoot=false
-			look_at(position+(position-target.position))
-			velocity=target.velocity.length()*transform.basis.z*-1*0.9
-		else:
-			look_at(target.position)
-			velocity=Vector3.ZERO
-	else:
-		can_shoot=true
-		look_at(target.position)
 		
-		if in_range(50):
-			velocity=Vector3.ZERO
-			
+	if target!=null:
+		if vizbox.is_on_screen():
+			var timetocatch=(distance(target.position,position))/target.velocity.length()
+			if timetocatch<1 or in_range(10):
+				can_shoot=false
+				look_at(position+(position-target.position))
+				velocity=target.velocity.length()*transform.basis.z*-1*0.9
+			else:
+				look_at(target.position)
+				velocity=Vector3.ZERO
 		else:
-			velocity=velocity_mag*transform.basis.z*-1
+			can_shoot=true
+			look_at(target.position)
+			
+			if in_range(50):
+				velocity=Vector3.ZERO
+				
+			else:
+				velocity=velocity_mag*transform.basis.z*-1
 	#if(distance(target.position,position)<20):
 		#velocity=4*transform.basis.z*-1
 		#

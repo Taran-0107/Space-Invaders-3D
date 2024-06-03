@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var roll_speed = 1.9
 @export var yaw_speed = 1.25
 
+var healthbar
 var pitch_input = 0.0
 var roll_input = 0.0
 var yaw_input = 0.0
@@ -32,6 +33,7 @@ func _ready():
 	health=100
 	nitros=[$particlehandler/GPUParticles3D4,$particlehandler/GPUParticles3D3]
 	area=$Area3D
+	healthbar=$"../twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport/ProgressBar"
 	
 func get_input(delta):
 	
@@ -46,8 +48,15 @@ func get_input(delta):
 		
 	#print(roll_input)
 func health_handler():
-	health-=1
+	health-=5
+	if health<=0:
+		healthbar.value=0
+		queue_free()
+		shooter.explosion(position,get_parent())
+	
 func _physics_process(delta):
+	
+	healthbar.value=health
 	var x=get_parent().transform.basis.x
 	var y=get_parent().transform.basis.y
 	var z=get_parent().transform.basis.z

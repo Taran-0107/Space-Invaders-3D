@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdwor30kdw181"]
+[gd_scene load_steps=23 format=3 uid="uid://cdwor30kdw181"]
 
 [ext_resource type="Script" path="res://explosion_node.gd" id="1_ndqh2"]
 [ext_resource type="Script" path="res://explosion.gd" id="2_cdo6u"]
@@ -7,17 +7,21 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwo7k"]
 transparency = 1
 vertex_color_use_as_albedo = true
+metallic = 0.58
+roughness = 0.7
+emission_enabled = true
+emission = Color(0.548963, 0.548963, 0.548963, 1)
 
 [sub_resource type="Curve" id="Curve_klkqh"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.717391, 0.868132), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_kdas1"]
 curve = SubResource("Curve_klkqh")
 
 [sub_resource type="Gradient" id="Gradient_ltb60"]
 offsets = PackedFloat32Array(0, 0.445455, 1)
-colors = PackedColorArray(1, 0.878035, 0.507644, 1, 0.675573, 0.666703, 0.639766, 1, 0.650128, 0.650128, 0.650128, 1)
+colors = PackedColorArray(1, 0.878035, 0.507644, 1, 0.689743, 0.405402, 0.281454, 1, 0.295095, 0.109228, 4.81308e-08, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_l20w7"]
 gradient = SubResource("Gradient_ltb60")
@@ -27,17 +31,15 @@ emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_max = 20.0
+initial_velocity_max = 30.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
-scale_max = 0.5
+scale_max = 0.2
 color = Color(0.808998, 0.808998, 0.808998, 1)
 color_ramp = SubResource("GradientTexture1D_l20w7")
 alpha_curve = SubResource("CurveTexture_kdas1")
 
-[sub_resource type="SphereMesh" id="SphereMesh_m7j8i"]
-radial_segments = 4
-rings = 1
+[sub_resource type="BoxMesh" id="BoxMesh_ulgy1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jobt5"]
 transparency = 1
@@ -63,21 +65,41 @@ gradient = SubResource("Gradient_cmf6u")
 curve = ExtResource("3_y0b11")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ba3nd"]
+particle_flag_align_y = true
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3(0, 1, 0)
 spread = 180.0
-initial_velocity_max = 5.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.1
-scale_max = 0.8
+scale_min = 0.5
 color_ramp = SubResource("GradientTexture1D_h1oqi")
 alpha_curve = SubResource("CurveTexture_64yka")
 emission_curve = SubResource("CurveTexture_pwco3")
 
+[sub_resource type="BoxMesh" id="BoxMesh_n0tjv"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leawb"]
+emission_enabled = true
+emission = Color(1, 0.931193, 0.673811, 1)
+emission_energy_multiplier = 2.08
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_df03a"]
+spread = 180.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+
 [sub_resource type="SphereMesh" id="SphereMesh_byr6l"]
 radial_segments = 4
 rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_etae6"]
+top_radius = 0.2
+bottom_radius = 0.05
 
 [node name="explosion_node" type="Node3D"]
 script = ExtResource("1_ndqh2")
@@ -86,17 +108,39 @@ script = ExtResource("1_ndqh2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0295006, 0, -0.00348711)
 material_override = SubResource("StandardMaterial3D_gwo7k")
 amount = 200
-lifetime = 2.0
+lifetime = 0.5
 explosiveness = 1.0
+trail_lifetime = 1.31
 process_material = SubResource("ParticleProcessMaterial_6qkcm")
-draw_pass_1 = SubResource("SphereMesh_m7j8i")
+draw_pass_1 = SubResource("BoxMesh_ulgy1")
 script = ExtResource("2_cdo6u")
 
 [node name="explosionfire" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221313, 0, -0.00348711)
 material_override = SubResource("StandardMaterial3D_jobt5")
-amount = 100
-explosiveness = 0.74
+amount = 40
+lifetime = 0.5
+explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ba3nd")
+draw_pass_1 = SubResource("BoxMesh_n0tjv")
+script = ExtResource("2_cdo6u")
+
+[node name="explosioncore" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221313, 0, -0.00348711)
+material_override = SubResource("StandardMaterial3D_leawb")
+amount = 10
+lifetime = 0.25
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_df03a")
 draw_pass_1 = SubResource("SphereMesh_byr6l")
+script = ExtResource("2_cdo6u")
+
+[node name="explosionfire2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221313, 0, -0.00348711)
+material_override = SubResource("StandardMaterial3D_jobt5")
+amount = 100
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ba3nd")
+draw_pass_1 = SubResource("CylinderMesh_etae6")
 script = ExtResource("2_cdo6u")

@@ -34,25 +34,25 @@ func _physics_process(delta):
 	if(Input.is_action_pressed("ui_accept")):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-	
+	if ship!=null:
 	#position=ship.position+ship.transform.basis.z*5+ship.transform.basis.y*2
-	twistpivot.position=lerp(twistpivot.position,(ship.position+ship.transform.basis.z*7+ship.transform.basis.y*5),0.1)
-	
-	twistpivot.position.x+=twist_input*500*delta
-	twistpivot.position.y+=pitch_input*500*delta
-	
-	twistpivot.rotate_y(twist_input*delta*100)
-	pitchpivot.rotate_x(pitch_input*delta*100)
-	
-	pitchpivot.rotation.x=clamp(pitchpivot.rotation.x,deg_to_rad(-45),deg_to_rad(45))
-	#twistpivot.rotation.y=clamp(twistpivot.rotation.y,deg_to_rad(0),deg_to_rad(360))
-	
-	ship.rotation.x=lerp(ship.rotation.x,pitchpivot.rotation.x,delta*5) 
-	ship.rotation.y=lerp_angle(ship.rotation.y,twistpivot.rotation.y,delta*5) 
+		twistpivot.position=lerp(twistpivot.position,(ship.position+ship.transform.basis.z*7+ship.transform.basis.y*2),delta*10)
+		
+		twistpivot.position.x+=twist_input*500*delta
+		twistpivot.position.y+=pitch_input*500*delta
+		
+		twistpivot.rotate_y(twist_input*delta*100)
+		pitchpivot.rotate_x(pitch_input*delta*100)
+		
+		pitchpivot.rotation.x=clamp(pitchpivot.rotation.x,deg_to_rad(-60),deg_to_rad(60))
+		#twistpivot.rotation.y=clamp(twistpivot.rotation.y,deg_to_rad(0),deg_to_rad(360))
+		
+		ship.rotation.x=lerp_angle(ship.rotation.x,pitchpivot.rotation.x,delta*8) 
+		ship.rotation.y=lerp_angle(ship.rotation.y,twistpivot.rotation.y,delta*8) 
 
-	twist_input=0
-	pitch_input=0
-	
+		twist_input=0
+		pitch_input=0
+		
 	
 	
 	

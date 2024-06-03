@@ -1,10 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=33 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
 [ext_resource type="Texture2D" uid="uid://q5dfefiq0bfi" path="res://panorama_image.png" id="2_bjgas"]
 [ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="2_lxmop"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="4_k2wgd"]
+[ext_resource type="PackedScene" uid="uid://dititvlf3rio4" path="res://player_healthbar.tscn" id="4_tioci"]
 [ext_resource type="Texture2D" uid="uid://loo1m1ihdkbj" path="res://crosshair.png" id="6_8500j"]
 [ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
@@ -12,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
 [ext_resource type="PackedScene" uid="uid://d4lvnk2i5b4r2" path="res://bob_enemy1.tscn" id="21_io3hh"]
 [ext_resource type="Script" path="res://bob_enemy1.gd" id="22_sgs1c"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
+viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vxnn6"]
 panorama = ExtResource("2_bjgas")
@@ -122,6 +126,16 @@ flip_h = true
 pixel_size = 0.001
 texture = ExtResource("6_8500j")
 
+[node name="Sprite3D2" type="Sprite3D" parent="twistpivot/pitchpivot/Camera3D"]
+transform = Transform3D(0.3, 4.96308e-25, -2.77556e-18, -4.1359e-25, 0.3, 0, 2.08167e-17, 0, 0.3, 0, 0.7, -1)
+texture = SubResource("ViewportTexture_3mdto")
+
+[node name="SubViewport" type="SubViewport" parent="twistpivot/pitchpivot/Camera3D/Sprite3D2"]
+disable_3d = true
+transparent_bg = true
+
+[node name="ProgressBar" parent="twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport" instance=ExtResource("4_tioci")]
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)
 light_energy = 10.011
@@ -149,7 +163,8 @@ mesh = SubResource("PlaneMesh_1b5mm")
 shape = SubResource("ConcavePolygonShape3D_x28cm")
 
 [node name="exie" parent="." instance=ExtResource("2_lxmop")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40956, 0, 6.93489)
+transform = Transform3D(1, 0, 0, 0, 0.983226, -0.18239, 0, 0.18239, 0.983226, 1.40956, 0, 6.93489)
+slide_on_ceiling = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_cvnra")
