@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://di3v51gidxgmb"]
+[gd_scene load_steps=11 format=3 uid="uid://di3v51gidxgmb"]
 
+[ext_resource type="Script" path="res://main_menu.gd" id="1_lyfpk"]
 [ext_resource type="Texture2D" uid="uid://q5dfefiq0bfi" path="res://panorama_image.png" id="5_6r0we"]
 [ext_resource type="Script" path="res://VBoxContainer.gd" id="6_laofo"]
 [ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="7_y00tt"]
@@ -23,12 +24,13 @@ glow_blend_mode = 1
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00818086, 0, 0.0108228)
+script = ExtResource("1_lyfpk")
 
 [node name="twistpivot" type="Node3D" parent="."]
-transform = Transform3D(0.999945, -0.0104718, 0, 0.0104718, 0.999945, 0, 0, 0, 1, 1.73144, 2.95902, 13.1542)
+transform = Transform3D(0.999945, -0.0104718, 0, 0.0104718, 0.999945, 0, 0, 0, 1, -3518.43, -279.26, 13.1542)
 
-[node name="pitchpivot" type="Node3D" parent="twistpivot"]
-transform = Transform3D(1, 5.82077e-10, 4.65661e-10, -5.82077e-10, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="twistpivot"]
+transform = Transform3D(0.24893, 0.0104718, 0.968465, -0.00260689, 0.999945, -0.0101421, -0.968518, 4.64976e-10, 0.248943, 3551.61, 240.024, -26.4151)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)
@@ -47,7 +49,7 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="exie" parent="." instance=ExtResource("7_y00tt")]
-transform = Transform3D(-0.179614, -0.0992056, 0.978722, 0.0649681, 0.991534, 0.112427, -0.98159, 0.0837793, -0.171648, 14.4416, -9.4678, -32.9804)
+transform = Transform3D(0.831609, 0.0084741, -0.555297, 0.0649682, 0.991534, 0.112427, 0.551549, -0.129572, 0.824017, -36.956, -13.1062, -169.231)
 slide_on_ceiling = false
 script = null
 
@@ -55,15 +57,12 @@ script = null
 stream = ExtResource("8_bsby2")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("9_5t720")]
-transform = Transform3D(0.323472, 0, -0.946238, 0, 1, 0, 0.946238, 0, 0.323472, -171.079, 0, -233.178)
+transform = Transform3D(0.323472, 0, -0.946238, 0, 1, 0, 0.946238, 0, 0.323472, -1250.46, 0, -637.821)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("10_loqjy")]
 transform = Transform3D(0.992086, 0, 0.125558, 0, 1, 0, -0.125558, 0, 0.992086, -1853.27, -635.233, -12.6173)
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.248943, 0, 0.968518, 0, 1, 0, -0.968518, 0, 0.248943, 30.4777, -2.05732, -13.2609)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
