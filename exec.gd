@@ -25,12 +25,20 @@ var nitros
 var area
 var maxhealth=100
 var health
+var shooting_powerup_enabled
+var shooting_powerup_time=10
+var time_since_shootingenabled=0
+var waitingfornextbullet=0
 
+func shoot_bullet():
+	shooter.player_shoot(get_node("."),get_parent())
+	
 func append_nitros(val):
 		for i in nitros:
 			i.emitting=val
 			
 func _ready():
+	shooting_powerup_enabled=false
 	health=100
 	nitros=[$particlehandler/GPUParticles3D4,$particlehandler/GPUParticles3D3]
 	area=$Area3D
@@ -48,8 +56,8 @@ func get_input(delta):
 		forward_speed = lerp(forward_speed, 0.0, acceleration * delta)
 		
 	#print(roll_input)
-func health_handler():
-	health-=5
+func health_handler(damage):
+	health-=damage
 	if health<=0:
 		healthbar.value=0
 		queue_free()
@@ -63,8 +71,18 @@ func _physics_process(delta):
 	var z=get_parent().transform.basis.z
 	var direction=transform.basis.z
 	
-	if Input.is_action_just_pressed("shoot"):
-		shooter.player_shoot(get_node("."),get_parent())
+	if Input.is_action_just_pressed("shoot") and not shooting_powerup_enabled:
+		shoot_bullet()
+	if shooting_powerup_enabled:
+		time_since_shootingenabled+=delta
+		if time_since_shootingenabled>=shooting_powerup_time:
+			shooting_powerup_enabled=false
+			time_since_shootingenabled=0
+		waitingfornextbullet+=delta
+		if waitingfornextbullet>0.1:
+			waitingfornextbullet=0
+			shoot_bullet()
+			
 	
 	if forward_speed<=1:
 		append_nitros(false)

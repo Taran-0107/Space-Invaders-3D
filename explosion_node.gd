@@ -26,7 +26,6 @@ func reset():
 	fs2.reset()
 	
 func play():
-	print("explosion")
 	var timel=ps.lifetime
 	ps.play()
 	fire_ps.play()

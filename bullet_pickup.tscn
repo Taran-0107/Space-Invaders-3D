@@ -1,0 +1,132 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4p5if52we2rt"]
+
+[ext_resource type="PackedScene" uid="uid://2kaqwkvwj8mi" path="res://bullet_pickup.glb" id="1_6wdxo"]
+[ext_resource type="Script" path="res://bullet_pickup.gd" id="2_ebhrh"]
+[ext_resource type="Material" uid="uid://bdtnbqvde8opy" path="res://bulletpickupmat.tres" id="3_hbbw6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fu3qf"]
+points = PackedVector3Array(-0.000195742, -0.180962, -1, -0.195184, -0.180962, -0.980814, -0.000195742, 0.180962, -1, 0.194988, -0.180962, -0.980814, -0.195184, 0.180962, -0.980814, -0.382733, -0.180962, -0.924041, 0.194988, 0.180962, -0.980814, 0.382537, -0.180962, -0.924041, -0.382733, 0.180962, -0.924041, -0.555599, -0.180962, -0.831637, 0.382537, 0.180962, -0.924041, 0.555403, -0.180962, -0.831637, -0.555599, 0.180962, -0.831637, -0.707126, -0.180962, -0.707126, 0.555403, 0.180962, -0.831637, 0.70693, -0.180962, -0.707126, -0.707126, 0.180962, -0.707126, -0.831637, -0.180962, -0.555599, 0.70693, 0.180962, -0.707126, 0.831441, -0.180962, -0.555599, -0.831637, 0.180962, -0.555599, -0.924041, -0.180962, -0.382733, 0.831441, 0.180962, -0.555599, 0.923845, -0.180962, -0.382733, -0.924041, 0.180962, -0.382733, -0.980814, -0.180962, -0.195184, 0.923845, 0.180962, -0.382733, 0.980619, -0.180962, -0.195184, -0.980814, 0.180962, -0.195184, -1, -0.180962, -0.000195742, 0.980619, 0.180962, -0.195184, 1, -0.180962, -0.000195742, -1, 0.180962, -0.000195742, -0.980814, -0.180962, 0.194988, 1, 0.180962, -0.000195742, 0.980619, -0.180962, 0.194988, -0.980814, 0.180962, 0.194988, -0.924041, -0.180962, 0.382537, 0.980619, 0.180962, 0.194988, 0.923845, -0.180962, 0.382537, -0.924041, 0.180962, 0.382537, -0.831637, -0.180962, 0.555403, 0.923845, 0.180962, 0.382537, 0.831441, -0.180962, 0.555403, -0.831637, 0.180962, 0.555403, -0.707126, -0.180962, 0.70693, 0.831441, 0.180962, 0.555403, 0.70693, -0.180962, 0.70693, -0.707126, 0.180962, 0.70693, -0.555599, -0.180962, 0.831441, 0.70693, 0.180962, 0.70693, 0.555403, -0.180962, 0.831441, -0.555599, 0.180962, 0.831441, -0.382733, -0.180962, 0.923845, 0.555403, 0.180962, 0.831441, 0.382537, -0.180962, 0.923845, -0.382733, 0.180962, 0.923845, -0.195184, -0.180962, 0.980619, 0.382537, 0.180962, 0.923845, 0.194988, -0.180962, 0.980619, -0.195184, 0.180962, 0.980619, -0.000195742, -0.180962, 1, 0.194988, 0.180962, 0.980619, -0.000195742, 0.180962, 1)
+
+[sub_resource type="Animation" id="Animation_t3n0c"]
+resource_name = "healthpickuprotation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vfvcs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.00433557]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cylinder:transparency")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wpg4x"]
+resource_name = "healthpickupfading"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.00433557, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cylinder:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.14159, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oos5h"]
+_data = {
+"RESET": SubResource("Animation_vfvcs"),
+"healthpickupfading": SubResource("Animation_wpg4x"),
+"healthpickuprotation": SubResource("Animation_t3n0c")
+}
+
+[node name="bullet_pickup" instance=ExtResource("1_6wdxo")]
+script = ExtResource("2_ebhrh")
+
+[node name="Cube" parent="." index="0"]
+material_override = ExtResource("3_hbbw6")
+transparency = 0.00433557
+
+[node name="Cylinder" parent="." index="1"]
+material_override = ExtResource("3_hbbw6")
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(0, 1.42232, 0, -1.42232, 0, 0, 0, 0, 1.42232, -0.0058408, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_fu3qf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_oos5h")
+}

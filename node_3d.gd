@@ -5,6 +5,8 @@ var enemy_bullet = preload("res://enemy_bullet.tscn")
 var star_scene=preload("res://star.tscn")
 var enemy_scene=preload("res://bob_enemy1.tscn")
 var powerup_scene=preload("res://healthpickup.tscn")
+var bp_scene=preload("res://bullet_pickup.tscn")
+var bomber_scene=preload("res://bomber_enemy_1.tscn")
 var ship1
 var textanimplayer
 var textlabel
@@ -36,6 +38,7 @@ func spawn_enemies(wave):
 	const wl=[1,2,3,4,5]
 	var count=wl[wave-1]
 	spawn_object(enemy_scene,count,300,enemies)
+	spawn_object(bomber_scene,count,100,enemies)
 
 func display_text(text_content):
 	textlabel.text=text_content
@@ -79,6 +82,7 @@ func _process(delta):
 			waiting=true
 			display_text("wave"+str(wave)+" cleared")
 			spawn_object(powerup_scene,4,30)
+			spawn_object(bp_scene,2,30)
 			await get_tree(). create_timer(7). timeout
 			if wave>=maxwaves:
 				display_text("Game Over, you win!")

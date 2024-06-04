@@ -19,7 +19,7 @@ func _process(delta):
 	var collision_areas=area.get_overlapping_areas()
 	if(collision_areas!=[]):
 		if(collision_areas[0].get_parent()==playership):
-			playership.health_handler()
+			playership.health_handler(5)
 			queue_free()
 		
 		

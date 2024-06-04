@@ -13,7 +13,9 @@ func _process(delta):
 
 func _on_new_game_pressed():
 	get_tree().change_scene_to_packed(NODE_3D)
+	print(get_tree())
 
 
 func _on_exit_pressed():
 	get_tree().quit()
+	print(get_tree())
