@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://di3v51gidxgmb"]
+[gd_scene load_steps=10 format=3 uid="uid://di3v51gidxgmb"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_lyfpk"]
 [ext_resource type="Texture2D" uid="uid://q5dfefiq0bfi" path="res://panorama_image.png" id="5_6r0we"]
@@ -31,6 +31,7 @@ transform = Transform3D(0.999945, -0.0104718, 0, 0.0104718, 0.999945, 0, 0, 0, 1
 
 [node name="Camera3D" type="Camera3D" parent="twistpivot"]
 transform = Transform3D(0.24893, 0.0104718, 0.968465, -0.00260689, 0.999945, -0.0101421, -0.968518, 4.64976e-10, 0.248943, 3551.61, 240.024, -26.4151)
+current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)

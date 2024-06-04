@@ -152,7 +152,7 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0160481, 0, -0.202498)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0160481, 0, -1.2025)
 material_override = SubResource("StandardMaterial3D_rkubj")
 mesh = SubResource("PlaneMesh_1b5mm")
 
@@ -162,7 +162,7 @@ mesh = SubResource("PlaneMesh_1b5mm")
 shape = SubResource("ConcavePolygonShape3D_x28cm")
 
 [node name="exie" parent="." instance=ExtResource("2_lxmop")]
-transform = Transform3D(1, 0, 0, 0, 0.983226, -0.18239, 0, 0.18239, 0.983226, 1.40956, 0, 6.93489)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40956, 0, 6.93489)
 slide_on_ceiling = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
