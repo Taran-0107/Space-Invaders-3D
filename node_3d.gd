@@ -10,6 +10,7 @@ var enemies=[]
 var bullets = []
 var wave
 var flag=true
+var waiting=false
 const maxwaves=5
 
 var waitforbullet=0;
@@ -51,16 +52,19 @@ func _process(delta):
 			enemies.remove_at(enemies.find(i))
 	print(enemies,wave)
 	
-	if enemies.is_empty() and flag:
-		
-		await get_tree(). create_timer(5). timeout
+	if enemies.is_empty() and flag and not waiting:
 		flag=false
 		
 	
 	if not flag:
+		flag=true
+		waiting=true
+		await get_tree(). create_timer(5). timeout
 		wave+=1
 		spawn_enemies(wave)
-		flag=true
+		
+		waiting=false
+		
 	pass
 		
 	
@@ -71,5 +75,3 @@ func add_stars(ammount):
 	var rand_z=randi_range(100,2000)
 	star.position=Vector3(rand_x,rand_y,rand_z)
 	add_child(star)
-
-
