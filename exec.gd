@@ -9,7 +9,7 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var external_velocity=Vector3.ZERO
 @export var max_speed = 50.0
 @export var acceleration = 0.6
 @export var pitch_speed = 1.5
@@ -23,6 +23,7 @@ var yaw_input = 0.0
 var forward_speed = 0.0
 var nitros
 var area
+var maxhealth=100
 var health
 
 func append_nitros(val):
@@ -72,7 +73,7 @@ func _physics_process(delta):
 
 	# Add the gravity.
 	get_input(delta)
-	velocity = -transform.basis.z * forward_speed
+	velocity = -transform.basis.z * forward_speed+external_velocity
 	
 	rotation.z+=roll_input*delta*2
 	
