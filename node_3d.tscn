@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=32 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
@@ -11,8 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
-[ext_resource type="PackedScene" uid="uid://d4lvnk2i5b4r2" path="res://bob_enemy1.tscn" id="21_io3hh"]
-[ext_resource type="Script" path="res://bob_enemy1.gd" id="22_sgs1c"]
+[ext_resource type="PackedScene" uid="uid://dahyqhyfrnyil" path="res://healthpickup.tscn" id="14_b4120"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
 viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
@@ -175,10 +174,6 @@ transform = Transform3D(0.323472, 0, -0.946238, 0, 1, 0, 0.946238, 0, 0.323472, 
 [node name="RigidBody3D" parent="." instance=ExtResource("10_8uadu")]
 transform = Transform3D(0.992086, 0, 0.125558, 0, 1, 0, -0.125558, 0, 0.992086, -1853.27, -634.7, -9.37447)
 
-[node name="Bob" parent="." instance=ExtResource("21_io3hh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9846, 0, 15.1764)
-script = ExtResource("22_sgs1c")
-
 [node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4432, -0.153299, 2.83242)
 sorting_use_aabb_center = false
@@ -198,17 +193,12 @@ draw_pass_1 = SubResource("SphereMesh_nktii")
 draw_pass_2 = SubResource("SphereMesh_88e5a")
 draw_skin = SubResource("Skin_tdgls")
 
-[node name="Bob3" parent="." instance=ExtResource("21_io3hh")]
-transform = Transform3D(-0.999979, 0, -0.00654489, 0, 1, 0, 0.00654489, 0, -0.999979, 2.93454, 0, 19.2146)
-script = ExtResource("22_sgs1c")
-
 [node name="Imperial" parent="." instance=ExtResource("14_81acb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3797, 0, -8.33866)
 
-[node name="Bob2" parent="." instance=ExtResource("21_io3hh")]
-transform = Transform3D(-0.999979, 0, -0.00654489, 0, 1, 0, 0.00654489, 0, -0.999979, -5.29809, 2.45351, -15.8736)
-script = ExtResource("22_sgs1c")
-
 [node name="Timer" type="Timer" parent="."]
+
+[node name="healthpickup" parent="." instance=ExtResource("14_b4120")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4013, 12.5288, -20.194)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

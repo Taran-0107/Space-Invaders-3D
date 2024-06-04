@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://dc5rw7jtsj1wa"]
+[gd_scene load_steps=24 format=3 uid="uid://dc5rw7jtsj1wa"]
 
 [ext_resource type="PackedScene" uid="uid://bddb2s7y5ko76" path="res://Executioner.gltf" id="1_h6dl8"]
 [ext_resource type="Script" path="res://exec.gd" id="2_fb3pq"]
+[ext_resource type="Script" path="res://Area3D.gd" id="3_i3xod"]
 [ext_resource type="Shader" path="res://particles.gdshader" id="3_qcqw4"]
 [ext_resource type="Script" path="res://nitros_particles.gd" id="4_t1glm"]
 
@@ -100,6 +101,7 @@ environment = SubResource("Environment_al60a")
 transform = Transform3D(-0.999936, 0, -0.0113093, 0, 1, 0, 0.0113093, 0, -0.999936, 0.0224092, 0, 0)
 
 [node name="Area3D" type="Area3D" parent="." index="2"]
+script = ExtResource("3_i3xod")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(-0.999936, 0, -0.0113093, 0, 1, 0, 0.0113093, 0, -0.999936, 0.0224092, 0, 0)
