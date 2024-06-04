@@ -6,6 +6,7 @@ var rotation_speed = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AudioStreamPlayer2.play()
 	pass # Replace with function body.
 
 

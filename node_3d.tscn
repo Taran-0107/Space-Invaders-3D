@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=43 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
@@ -7,10 +7,11 @@
 [ext_resource type="Script" path="res://Camera3D.gd" id="4_k2wgd"]
 [ext_resource type="PackedScene" uid="uid://dititvlf3rio4" path="res://player_healthbar.tscn" id="4_tioci"]
 [ext_resource type="Texture2D" uid="uid://loo1m1ihdkbj" path="res://crosshair.png" id="6_8500j"]
-[ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
+[ext_resource type="AudioStream" uid="uid://by5quxok8ypjm" path="res://untitled.mp3" id="8_b77yk"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
+[ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="8_maqgb"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
-[ext_resource type="PackedScene" path="res://mystplanet.tscn" id="13_5lr16"]
+[ext_resource type="PackedScene" uid="uid://onmrbqtre6dm" path="res://mystplanet.tscn" id="13_5lr16"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
 [ext_resource type="PackedScene" uid="uid://dahyqhyfrnyil" path="res://healthpickup.tscn" id="14_b4120"]
 [ext_resource type="PackedScene" uid="uid://b4p5if52we2rt" path="res://bullet_pickup.tscn" id="15_5sown"]
@@ -271,7 +272,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40956, 0, 6.93489)
 slide_on_ceiling = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_cvnra")
+stream = ExtResource("8_b77yk")
+script = ExtResource("8_maqgb")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("8_g6dpo")]
 transform = Transform3D(0.323472, 0, -0.946238, 0, 1, 0, 0.946238, 0, 0.323472, -171.079, 0, -233.178)
