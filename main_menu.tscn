@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://di3v51gidxgmb"]
+[gd_scene load_steps=11 format=3 uid="uid://di3v51gidxgmb"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_lyfpk"]
 [ext_resource type="Texture2D" uid="uid://q5dfefiq0bfi" path="res://panorama_image.png" id="5_6r0we"]
@@ -22,7 +22,7 @@ sky = SubResource("Sky_egmhd")
 glow_enabled = true
 glow_blend_mode = 1
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00818086, 0, 0.0108228)
 script = ExtResource("1_lyfpk")
 

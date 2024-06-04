@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=32 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
@@ -10,84 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
-[ext_resource type="PackedScene" uid="uid://onmrbqtre6dm" path="res://mystplanet.tscn" id="13_5lr16"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
 [ext_resource type="PackedScene" uid="uid://dahyqhyfrnyil" path="res://healthpickup.tscn" id="14_b4120"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
 viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_n4wtd"]
-viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D3/SubViewport")
-
-[sub_resource type="Animation" id="Animation_erurs"]
-resource_name = "textfading"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Label:label_settings:font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2, 3, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewport/Label:label_settings:outline_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 2, 3, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_4soer"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Label:label_settings:font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("SubViewport/Label:label_settings:outline_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_eposs"]
-_data = {
-"RESET": SubResource("Animation_4soer"),
-"textfading": SubResource("Animation_erurs")
-}
-
-[sub_resource type="SystemFont" id="SystemFont_bvlb3"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4t1ud"]
-font = SubResource("SystemFont_bvlb3")
-font_size = 50
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vxnn6"]
 panorama = ExtResource("2_bjgas")
@@ -208,35 +135,6 @@ transparent_bg = true
 
 [node name="ProgressBar" parent="twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport" instance=ExtResource("4_tioci")]
 
-[node name="Sprite3D3" type="Sprite3D" parent="twistpivot/pitchpivot/Camera3D"]
-transform = Transform3D(0.3, 4.96308e-25, -1.66533e-17, -4.96308e-25, 0.3, 0, 1.66533e-17, 0, 0.3, 0.00463283, 0.442367, -1)
-texture = SubResource("ViewportTexture_n4wtd")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="twistpivot/pitchpivot/Camera3D/Sprite3D3"]
-libraries = {
-"": SubResource("AnimationLibrary_eposs")
-}
-
-[node name="SubViewport" type="SubViewport" parent="twistpivot/pitchpivot/Camera3D/Sprite3D3"]
-transparent_bg = true
-
-[node name="Label" type="Label" parent="twistpivot/pitchpivot/Camera3D/Sprite3D3/SubViewport"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -34.5
-offset_right = 60.0
-offset_bottom = 34.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "hello
-"
-label_settings = SubResource("LabelSettings_4t1ud")
-horizontal_alignment = 1
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)
 light_energy = 10.011
@@ -302,8 +200,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3797, 0, -8.33866)
 
 [node name="healthpickup" parent="." instance=ExtResource("14_b4120")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4013, 12.5288, -20.194)
-
-[node name="Node3D" parent="." instance=ExtResource("13_5lr16")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 155.107, 0, -270.441)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
