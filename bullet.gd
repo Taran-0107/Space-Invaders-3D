@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+#bullet hello hello
 var playership
 var lifetime=2
 var exising=0
