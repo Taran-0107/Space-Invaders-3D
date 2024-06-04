@@ -29,8 +29,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
-	if(Input.is_action_pressed("ui_cancel")):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#if(Input.is_action_pressed("ui_cancel")):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	if(Input.is_action_pressed("ui_accept")):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
@@ -65,5 +65,8 @@ func _unhandled_input(event: InputEvent):
 		if Input.get_mouse_mode()==Input.MOUSE_MODE_CAPTURED:
 			twist_input=-event.relative.x*mouse_sensitivity
 			pitch_input=-event.relative.y*mouse_sensitivity
+			
+	if event.is_action_pressed("ui_cancel"):
+		$"../../../PauseMenu".pause()
 			
 		

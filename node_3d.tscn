@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=38 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
@@ -10,11 +10,56 @@
 [ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
+[ext_resource type="PackedScene" uid="uid://1hyf2fi3cyf" path="res://pause_menu.tscn" id="13_l6brg"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
 [ext_resource type="PackedScene" uid="uid://dahyqhyfrnyil" path="res://healthpickup.tscn" id="14_b4120"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
 viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8fr55"]
+viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D3/SubViewport")
+
+[sub_resource type="Animation" id="Animation_86u0v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3svx0"]
+resource_name = "textfading"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewport/Label:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tmd1n"]
+_data = {
+"RESET": SubResource("Animation_86u0v"),
+"textfading": SubResource("Animation_3svx0")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_g0esr"]
+font_size = 50
+font_color = Color(1, 1, 1, 0)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vxnn6"]
 panorama = ExtResource("2_bjgas")
@@ -135,6 +180,36 @@ transparent_bg = true
 
 [node name="ProgressBar" parent="twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport" instance=ExtResource("4_tioci")]
 
+[node name="Sprite3D3" type="Sprite3D" parent="twistpivot/pitchpivot/Camera3D"]
+transform = Transform3D(0.3, 4.96308e-25, -2.77556e-18, -2.06795e-25, 0.3, 0, 1.38778e-17, 0, 0.3, 0, 0.442, -1)
+texture = SubResource("ViewportTexture_8fr55")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="twistpivot/pitchpivot/Camera3D/Sprite3D3"]
+libraries = {
+"": SubResource("AnimationLibrary_tmd1n")
+}
+
+[node name="SubViewport" type="SubViewport" parent="twistpivot/pitchpivot/Camera3D/Sprite3D3"]
+disable_3d = true
+transparent_bg = true
+
+[node name="Label" type="Label" parent="twistpivot/pitchpivot/Camera3D/Sprite3D3/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -34.5
+offset_right = 63.0
+offset_bottom = 34.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hello
+"
+label_settings = SubResource("LabelSettings_g0esr")
+horizontal_alignment = 1
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)
 light_energy = 10.011
@@ -200,5 +275,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.3797, 0, -8.33866)
 
 [node name="healthpickup" parent="." instance=ExtResource("14_b4120")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4013, 12.5288, -20.194)
+
+[node name="PauseMenu" parent="." instance=ExtResource("13_l6brg")]
+process_mode = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
