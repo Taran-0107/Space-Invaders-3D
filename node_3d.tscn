@@ -10,12 +10,12 @@
 [ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="7_cvnra"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
-[ext_resource type="PackedScene" uid="uid://onmrbqtre6dm" path="res://mystplanet.tscn" id="13_5lr16"]
+[ext_resource type="PackedScene" path="res://mystplanet.tscn" id="13_5lr16"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
 [ext_resource type="PackedScene" uid="uid://dahyqhyfrnyil" path="res://healthpickup.tscn" id="14_b4120"]
-[ext_resource type="PackedScene" uid="uid://bpdepwmwg54n5" path="res://grav_enemy_1.tscn" id="14_rd5ua"]
 [ext_resource type="PackedScene" uid="uid://b4p5if52we2rt" path="res://bullet_pickup.tscn" id="15_5sown"]
 [ext_resource type="PackedScene" uid="uid://cprm0bkju8rhd" path="res://bomber_enemy_1.tscn" id="16_6k6hv"]
+[ext_resource type="PackedScene" uid="uid://1hyf2fi3cyf" path="res://pause_menu.tscn" id="17_1tn3w"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
 viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
@@ -309,13 +309,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4013, 12.5288, -20.194)
 [node name="Node3D" parent="." instance=ExtResource("13_5lr16")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 155.107, 0, -270.441)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("14_rd5ua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5708, 0, -7.43153)
-
 [node name="bullet_pickup" parent="." instance=ExtResource("15_5sown")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.578, 12.969, -17.1656)
 
 [node name="CharacterBody3D2" parent="." instance=ExtResource("16_6k6hv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9918, 0, 6.98918)
+
+[node name="PauseMenu" parent="." instance=ExtResource("17_1tn3w")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

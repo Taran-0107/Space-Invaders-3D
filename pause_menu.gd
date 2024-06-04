@@ -1,7 +1,5 @@
 extends ColorRect
 
-const MAIN_MENU = preload("res://main_menu.tscn")
-
 
 @onready var animator: AnimationPlayer = $AnimationPlayer
 @onready var play_button: Button = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Resume
@@ -9,6 +7,7 @@ const MAIN_MENU = preload("res://main_menu.tscn")
 
 func _ready() -> void:
 	play_button.pressed.connect(unpause)
+	quit_button.pressed.connect(get_tree().quit)
 
 
 func unpause():
@@ -24,7 +23,5 @@ func pause():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
-func _on_quit_pressed():
-	get_tree().paused = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+
+

@@ -14,9 +14,9 @@ var mouse_sensitivity=0.001
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pitchpivot=get_parent()
 	twistpivot=pitchpivot.get_parent()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	offset=rotation
 	
 	ship=get_node("/root/Node3D/exie")
@@ -31,8 +31,8 @@ func _physics_process(delta):
 	
 	#if(Input.is_action_pressed("ui_cancel")):
 		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if(Input.is_action_pressed("ui_accept")):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#if(Input.is_action_pressed("ui_accept")):
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
 	if ship!=null:
 	#position=ship.position+ship.transform.basis.z*5+ship.transform.basis.y*2
