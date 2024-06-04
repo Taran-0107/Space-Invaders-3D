@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://di3v51gidxgmb"]
+
+[ext_resource type="Texture2D" uid="uid://q5dfefiq0bfi" path="res://panorama_image.png" id="5_6r0we"]
+[ext_resource type="Script" path="res://VBoxContainer.gd" id="6_laofo"]
+[ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="7_y00tt"]
+[ext_resource type="AudioStream" uid="uid://bx283yg4jn34g" path="res://asman.mp3" id="8_bsby2"]
+[ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="9_5t720"]
+[ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_loqjy"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vxnn6"]
+panorama = ExtResource("5_6r0we")
+
+[sub_resource type="Sky" id="Sky_egmhd"]
+sky_material = SubResource("PanoramaSkyMaterial_vxnn6")
+
+[sub_resource type="Environment" id="Environment_r5ji5"]
+background_mode = 2
+background_color = Color(0.113725, 0.0705882, 0.192157, 1)
+background_energy_multiplier = 1.9
+sky = SubResource("Sky_egmhd")
+glow_enabled = true
+glow_blend_mode = 1
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00818086, 0, 0.0108228)
+
+[node name="twistpivot" type="Node3D" parent="."]
+transform = Transform3D(0.999945, -0.0104718, 0, 0.0104718, 0.999945, 0, 0, 0, 1, 1.73144, 2.95902, 13.1542)
+
+[node name="pitchpivot" type="Node3D" parent="twistpivot"]
+transform = Transform3D(1, 5.82077e-10, 4.65661e-10, -5.82077e-10, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 7.05129e-08, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 20.1894, 12.8791, -35.7744)
+light_energy = 10.011
+light_volumetric_fog_energy = 2.131
+light_size = 0.172
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_r5ji5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.452435, -0.636075, -0.625069, 0, -0.700909, 0.71325, -0.891798, -0.322699, -0.317116, 0, -7.62939e-06, 0)
+light_volumetric_fog_energy = 0.97
+shadow_enabled = true
+sky_mode = 1
+
+[node name="exie" parent="." instance=ExtResource("7_y00tt")]
+transform = Transform3D(-0.179614, -0.0992056, 0.978722, 0.0649681, 0.991534, 0.112427, -0.98159, 0.0837793, -0.171648, 14.4416, -9.4678, -32.9804)
+slide_on_ceiling = false
+script = null
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_bsby2")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("9_5t720")]
+transform = Transform3D(0.323472, 0, -0.946238, 0, 1, 0, 0.946238, 0, 0.323472, -171.079, 0, -233.178)
+
+[node name="RigidBody3D" parent="." instance=ExtResource("10_loqjy")]
+transform = Transform3D(0.992086, 0, 0.125558, 0, 1, 0, -0.125558, 0, 0.992086, -1853.27, -635.233, -12.6173)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.248943, 0, 0.968518, 0, 1, 0, -0.968518, 0, 0.248943, 30.4777, -2.05732, -13.2609)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -65.0
+offset_right = 178.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_laofo")
+
+[node name="New_Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "New Game"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Exit
+"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="VBoxContainer/New_Game" to="VBoxContainer" method="_on_new_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer" method="_on_exit_pressed"]
