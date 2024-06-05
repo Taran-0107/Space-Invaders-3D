@@ -1,21 +1,30 @@
-[gd_scene load_steps=9 format=3 uid="uid://1hyf2fi3cyf"]
+[gd_scene load_steps=7 format=3 uid="uid://dh21vahk0kh8l"]
 
-[ext_resource type="Shader" path="res://pause_menu.gdshader" id="1_ddr2h"]
-[ext_resource type="Script" path="res://pause_menu.gd" id="2_gr4nh"]
+[ext_resource type="Shader" path="res://pause_menu.gdshader" id="1_04hwc"]
+[ext_resource type="Script" path="res://game_over_screen.gd" id="2_ajvuf"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bf33x"]
-shader = ExtResource("1_ddr2h")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nyixm"]
+shader = ExtResource("1_04hwc")
 shader_parameter/blur = null
 shader_parameter/brightness = 1.0
 
-[sub_resource type="InputEventAction" id="InputEventAction_je80v"]
-action = &"ui_cancel"
-pressed = true
+[sub_resource type="Animation" id="Animation_7hxu4"]
+resource_name = "game_over"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
-[sub_resource type="Shortcut" id="Shortcut_1akjt"]
-events = [SubResource("InputEventAction_je80v")]
-
-[sub_resource type="Animation" id="Animation_mlxr0"]
+[sub_resource type="Animation" id="Animation_giurk"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,37 +39,21 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_1asvd"]
-resource_name = "pause"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CenterContainer:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jqar"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wb0cd"]
 _data = {
-"RESET": SubResource("Animation_mlxr0"),
-"pause": SubResource("Animation_1asvd")
+"RESET": SubResource("Animation_giurk"),
+"game_over": SubResource("Animation_7hxu4")
 }
 
-[node name="PauseMenu" type="ColorRect"]
+[node name="GameOverScreen" type="ColorRect"]
 process_mode = 2
-material = SubResource("ShaderMaterial_bf33x")
+material = SubResource("ShaderMaterial_nyixm")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_gr4nh")
+script = ExtResource("2_ajvuf")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -86,19 +79,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Pause"
+theme_override_font_sizes/font_size = 40
+text = "Game Over"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Resume" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-shortcut = SubResource("Shortcut_1akjt")
-text = "Resume"
 
 [node name="Restart" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -110,12 +96,11 @@ text = "Restart"
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 20
-text = "Quit Game"
+text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1jqar")
+"": SubResource("AnimationLibrary_wb0cd")
 }
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bfkw6bgbc5nx5"]
+[gd_scene load_steps=44 format=3 uid="uid://bfkw6bgbc5nx5"]
 
 [ext_resource type="Texture2D" uid="uid://c2sevmtignadx" path="res://Executioner_Executioner_Orange.png" id="1_gq4il"]
 [ext_resource type="Script" path="res://node_3d.gd" id="1_t7crw"]
@@ -11,12 +11,13 @@
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
 [ext_resource type="Script" path="res://AudioStreamPlayer.gd" id="8_maqgb"]
 [ext_resource type="PackedScene" uid="uid://d0sg57t3ci7je" path="res://sun.tscn" id="10_8uadu"]
-[ext_resource type="PackedScene" uid="uid://onmrbqtre6dm" path="res://mystplanet.tscn" id="13_5lr16"]
+[ext_resource type="PackedScene" path="res://mystplanet.tscn" id="13_5lr16"]
 [ext_resource type="PackedScene" uid="uid://3mlwfuvf30bd" path="res://imperial.tscn" id="14_81acb"]
 [ext_resource type="PackedScene" uid="uid://dahyqhyfrnyil" path="res://healthpickup.tscn" id="14_b4120"]
 [ext_resource type="PackedScene" uid="uid://b4p5if52we2rt" path="res://bullet_pickup.tscn" id="15_5sown"]
 [ext_resource type="PackedScene" uid="uid://cprm0bkju8rhd" path="res://bomber_enemy_1.tscn" id="16_6k6hv"]
 [ext_resource type="PackedScene" uid="uid://1hyf2fi3cyf" path="res://pause_menu.tscn" id="17_1tn3w"]
+[ext_resource type="PackedScene" uid="uid://dh21vahk0kh8l" path="res://game_over_screen.tscn" id="18_swygi"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
 viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
@@ -318,5 +319,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.578, 12.969, -17.1656)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9918, 0, 6.98918)
 
 [node name="PauseMenu" parent="." instance=ExtResource("17_1tn3w")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("18_swygi")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

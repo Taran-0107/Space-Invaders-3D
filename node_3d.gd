@@ -69,7 +69,8 @@ func _process(delta):
 	if not gameover:
 		
 		if ship1==null:
-			display_text("Game Over, you lose!")
+			#display_text("Game Over, you lose!")
+			$GameOverScreen.pause()
 			gameover=true
 			return
 	
@@ -85,7 +86,8 @@ func _process(delta):
 			spawn_object(bp_scene,2,30)
 			await get_tree(). create_timer(7). timeout
 			if wave>=maxwaves:
-				display_text("Game Over, you win!")
+				#display_text("Game Over, you win!")
+				$GameOverScreen.pause()
 				gameover=true
 				return
 			wave+=1
