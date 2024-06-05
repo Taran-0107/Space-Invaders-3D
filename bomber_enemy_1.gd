@@ -9,10 +9,10 @@ const safedistance=50
 var can_shoot=true
 var rotationSpeed = 2;
 var healthbar
-var maxhealth=100
+var maxhealth=50
 var health
 var damage=50
-var velocity_mag=8
+var velocity_mag=2
 var area
 
 func distance(a,b):
@@ -22,7 +22,7 @@ func in_range(radius):
 	return distance(position,target.position)<radius
 
 func health_handler(damage):
-	health-=damage*2
+	health-=damage
 	if health<=0:
 		set_visible(false)
 		shooter.explosion(position,get_parent())
@@ -37,6 +37,7 @@ func _ready():
 	target=$"../exie"
 	vizbox=$viznode/VisibleOnScreenNotifier3D
 	healthbar = $Sprite3D/SubViewport/HealthBar
+	healthbar.max_value = maxhealth
 	velocity_mag=12
 
 	

@@ -35,6 +35,7 @@ func _ready():
 	target=$"../exie"
 	vizbox=$viznode/VisibleOnScreenNotifier3D
 	healthbar = $SubViewport/HealthBar
+	healthbar.max_value = maxhealth
 
 	
 func shoot(delta):
