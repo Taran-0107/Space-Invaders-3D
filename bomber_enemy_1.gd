@@ -11,6 +11,7 @@ var rotationSpeed = 2;
 var healthbar
 var maxhealth=100
 var health
+var damage=50
 var velocity_mag=8
 var area
 
@@ -20,13 +21,13 @@ func distance(a,b):
 func in_range(radius):
 	return distance(position,target.position)<radius
 
-func health_handler():
-	health-=10
+func health_handler(damage):
+	health-=damage*2
 	if health<=0:
 		set_visible(false)
 		shooter.explosion(position,get_parent())
+		get_parent().score+=20
 		queue_free()
-		
 		
 		
 	
@@ -65,12 +66,9 @@ func _physics_process(delta):
 	var collision_areas=area.get_overlapping_areas()
 	if(collision_areas!=[]):
 		if(collision_areas[0].get_parent()==target):
-			target.health_handler(30)
+			target.health_handler(damage)
 			shooter.explosion(position,get_parent())
 			queue_free()
 
 	
 	move_and_slide()
-
-
-	

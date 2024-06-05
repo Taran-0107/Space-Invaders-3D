@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc5rw7jtsj1wa" path="res://executioner.tscn" id="2_lxmop"]
 [ext_resource type="Script" path="res://Camera3D.gd" id="4_k2wgd"]
 [ext_resource type="PackedScene" uid="uid://dititvlf3rio4" path="res://player_healthbar.tscn" id="4_tioci"]
+[ext_resource type="PackedScene" uid="uid://idldi563gdo4" path="res://score.tscn" id="5_rnewn"]
 [ext_resource type="Texture2D" uid="uid://loo1m1ihdkbj" path="res://crosshair.png" id="6_8500j"]
 [ext_resource type="AudioStream" uid="uid://by5quxok8ypjm" path="res://untitled.mp3" id="8_b77yk"]
 [ext_resource type="PackedScene" uid="uid://b13def55dr1ab" path="res://scene.gltf" id="8_g6dpo"]
@@ -17,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://b4p5if52we2rt" path="res://bullet_pickup.tscn" id="15_5sown"]
 [ext_resource type="PackedScene" uid="uid://cprm0bkju8rhd" path="res://bomber_enemy_1.tscn" id="16_6k6hv"]
 [ext_resource type="PackedScene" uid="uid://1hyf2fi3cyf" path="res://pause_menu.tscn" id="17_1tn3w"]
-[ext_resource type="PackedScene" uid="uid://dh21vahk0kh8l" path="res://game_over_screen.tscn" id="18_swygi"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mdto"]
 viewport_path = NodePath("twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport")
@@ -213,6 +213,8 @@ transparent_bg = true
 
 [node name="ProgressBar" parent="twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport" instance=ExtResource("4_tioci")]
 
+[node name="Score" parent="twistpivot/pitchpivot/Camera3D/Sprite3D2/SubViewport" instance=ExtResource("5_rnewn")]
+
 [node name="Sprite3D3" type="Sprite3D" parent="twistpivot/pitchpivot/Camera3D"]
 transform = Transform3D(0.3, 4.96308e-25, -1.66533e-17, -4.96308e-25, 0.3, 0, 1.66533e-17, 0, 0.3, 0, 0.442, -1)
 texture = SubResource("ViewportTexture_n4wtd")
@@ -319,7 +321,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.578, 12.969, -17.1656)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.9918, 0, 6.98918)
 
 [node name="PauseMenu" parent="." instance=ExtResource("17_1tn3w")]
-
-[node name="GameOverScreen" parent="." instance=ExtResource("18_swygi")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

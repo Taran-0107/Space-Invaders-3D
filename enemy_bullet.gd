@@ -4,6 +4,7 @@ var playership
 var lifetime=2
 var exising=0
 var area
+const damage=5
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playership=get_node("/root/Node3D/exie")
@@ -19,7 +20,7 @@ func _process(delta):
 	var collision_areas=area.get_overlapping_areas()
 	if(collision_areas!=[]):
 		if(collision_areas[0].get_parent()==playership):
-			playership.health_handler(5)
+			playership.health_handler(damage)
 			queue_free()
 		
 		
@@ -27,5 +28,3 @@ func _process(delta):
 		
 	
 	pass
-
-

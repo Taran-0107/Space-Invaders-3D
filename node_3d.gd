@@ -1,5 +1,6 @@
 extends Node3D
 
+var score = 0
 var player_bullet = preload("res://bullet.tscn")
 var enemy_bullet = preload("res://enemy_bullet.tscn")
 var star_scene=preload("res://star.tscn")
@@ -69,9 +70,9 @@ func _process(delta):
 	if not gameover:
 		
 		if ship1==null:
-			#display_text("Game Over, you lose!")
-			$GameOverScreen.pause()
-			gameover=true
+			display_text("Game Over, you lose!")
+
+			#gameover=true
 			return
 	
 		if enemies.is_empty() and flag and not waiting:
@@ -86,8 +87,8 @@ func _process(delta):
 			spawn_object(bp_scene,2,30)
 			await get_tree(). create_timer(7). timeout
 			if wave>=maxwaves:
-				#display_text("Game Over, you win!")
-				$GameOverScreen.pause()
+				display_text("Game Over, you win!")
+
 				gameover=true
 				return
 			wave+=1

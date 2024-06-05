@@ -5,6 +5,7 @@ var lifetime=2
 var exising=0
 var area
 var node3D
+const damage=10
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	node3D=get_node("/root/Node3D")
@@ -22,7 +23,7 @@ func _process(delta):
 		for i in node3D.enemies:
 			for j in collision_areas:
 				if j.get_parent()==i:
-					i.health_handler()
+					i.health_handler(damage)
 					#i.take_damage(10)
 					queue_free()
 		

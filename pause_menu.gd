@@ -10,7 +10,7 @@ extends ColorRect
 func _ready() -> void:
 	animator.play("RESET")
 	play_button.pressed.connect(unpause)
-	quit_button.pressed.connect(get_tree().quit)
+	#quit_button.pressed.connect(get_tree().quit)
 	
 
 
@@ -30,3 +30,9 @@ func pause():
 func _on_restart_pressed():
 	unpause()
 	get_tree().reload_current_scene()
+
+
+func _on_quit_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

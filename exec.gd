@@ -62,6 +62,7 @@ func health_handler(damage):
 		healthbar.value=0
 		queue_free()
 		shooter.explosion(position,get_parent())
+		get_parent().gameover = true
 	
 func _physics_process(delta):
 	

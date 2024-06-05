@@ -19,11 +19,12 @@ func distance(a,b):
 func in_range(radius):
 	return distance(position,target.position)<radius
 
-func health_handler():
-	health-=10
+func health_handler(damage):
+	health-=damage
 	if health<=0:
 		set_visible(false)
 		shooter.explosion(position,get_parent())
+		get_parent().score+=30
 		queue_free()
 		
 		
@@ -88,5 +89,3 @@ func _physics_process(delta):
 	#if healthbar.value < damage:
 		#damage = healthbar.value
 	#healthbar.value -= damage
-	
-	
